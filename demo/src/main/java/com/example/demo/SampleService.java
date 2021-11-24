@@ -60,7 +60,7 @@ public class SampleService {
       connection = DriverManager.getConnection(dbUrl, username, password);
       delete(productForm);
       PreparedStatement statement = connection
-          .prepareStatement("INSERT INTO product VALUES ((cast(? as int), ?, ?, ?, ?)");
+          .prepareStatement("INSERT INTO product VALUES (cast(? as int), ?, ?, ?, ?)");
 
       statement.setString(1, productForm.getCode());
       statement.setString(2, productForm.getName());
@@ -90,7 +90,7 @@ public class SampleService {
     try {
       connection = DriverManager.getConnection(dbUrl, username, password);
       PreparedStatement statement = connection.prepareStatement(
-          "UPDATE product SET code=(cast(? as int), name=?, description=?, price=?, evaluation=? WHERE code=?");
+          "UPDATE product SET code=cast(? as int), name=?, description=?, price=?, evaluation=? WHERE code=?");
 
       statement.setString(1, productForm.getCode());
       statement.setString(2, productForm.getName());
@@ -120,7 +120,7 @@ public class SampleService {
 
     try {
       connection = DriverManager.getConnection(dbUrl, username, password);
-      PreparedStatement statement = connection.prepareStatement("DELETE FROM product WHERE code=(cast(? as int)");
+      PreparedStatement statement = connection.prepareStatement("DELETE FROM product WHERE code=cast(? as int)");
 
       statement.setString(1, productForm.getCode());
 
