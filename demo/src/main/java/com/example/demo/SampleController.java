@@ -5,6 +5,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.net.URISyntaxException;
 import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -56,7 +58,7 @@ public class SampleController {
 
   @ModelAttribute
   @RequestMapping(value = "/show_product", method = RequestMethod.GET)
-  public String show_product(Model model) {
+  public String show_product(Model model) throws URISyntaxException {
     List<String> products = null;
     products = sampleService.selectAll();
     Map<Integer, Map<String, String>> outerMap = new HashMap<>();
@@ -112,7 +114,7 @@ public class SampleController {
 
   @ModelAttribute
   @RequestMapping(value = "/after_delete_product", method = RequestMethod.POST)
-  public String afeter_delete_product(ProductForm productForm, Model model) {
+  public String afeter_delete_product(ProductForm productForm, Model model) throws URISyntaxException {
     int flg = 0;
     String str = "";
     List<Map<String, Object>> list = jdbcTemplate.queryForList("SELECT * FROM product");
@@ -144,7 +146,7 @@ public class SampleController {
 
   @ModelAttribute
   @RequestMapping(value = "/show_register_result", method = RequestMethod.POST)
-  public String show_register_result(ProductForm productForm, Model model) {
+  public String show_register_result(ProductForm productForm, Model model) throws URISyntaxException {
     int flg = 0;
     String str;
     List<Map<String, Object>> list = jdbcTemplate.queryForList("SELECT * FROM product");
@@ -181,7 +183,7 @@ public class SampleController {
 
   @ModelAttribute
   @RequestMapping(value = "/show_update_result", method = RequestMethod.POST)
-  public String show_update_result(ProductForm productForm, Model model) {
+  public String show_update_result(ProductForm productForm, Model model) throws URISyntaxException {
     int flg = 0;
     String str;
     List<Map<String, Object>> list = jdbcTemplate.queryForList("SELECT * FROM product");
