@@ -23,7 +23,7 @@ public class SampleService {
 
     String username = dbUri.getUserInfo().split(":")[0];
     String password = dbUri.getUserInfo().split(":")[1];
-    String dbUrl = "mysql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+    String dbUrl = "jdbc:mysql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
 
     try {
       connection = DriverManager.getConnection(dbUrl, username, password); // localhost:3306を変更
@@ -54,7 +54,7 @@ public class SampleService {
 
     String username = dbUri.getUserInfo().split(":")[0];
     String password = dbUri.getUserInfo().split(":")[1];
-    String dbUrl = "mysql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+    String dbUrl = "jdbc:mysql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
 
     try {
       connection = DriverManager.getConnection(dbUrl, username, password);
@@ -84,7 +84,7 @@ public class SampleService {
 
     String username = dbUri.getUserInfo().split(":")[0];
     String password = dbUri.getUserInfo().split(":")[1];
-    String dbUrl = "mysql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+    String dbUrl = "jdbc:mysql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
 
     try {
       connection = DriverManager.getConnection(dbUrl, username, password);
@@ -115,7 +115,7 @@ public class SampleService {
 
     String username = dbUri.getUserInfo().split(":")[0];
     String password = dbUri.getUserInfo().split(":")[1];
-    String dbUrl = "mysql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+    String dbUrl = "jdbc:mysql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
 
     try {
       connection = DriverManager.getConnection(dbUrl, username, password);
