@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -12,14 +14,19 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SampleService {
-  public List<String> selectAll() {
+  public List<String> selectAll() throws URISyntaxException {
     List<String> entities = null;
     entities = new ArrayList<String>();
     ResultSet resultSet = null;
     Connection connection = null;
+    URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
+
+    String username = dbUri.getUserInfo().split(":")[0];
+    String password = dbUri.getUserInfo().split(":")[1];
+    String dbUrl = "mysql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
 
     try {
-      connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/sample", "root", "Yuuki5196"); // localhost:3306を変更
+      connection = DriverManager.getConnection(dbUrl, username, password); // localhost:3306を変更
       Statement statement = connection.createStatement();
       resultSet = statement.executeQuery("select * from product");
       while (resultSet.next()) {
@@ -41,11 +48,16 @@ public class SampleService {
     return entities;
   }
 
-  public void insert(ProductForm productForm) {
+  public void insert(ProductForm productForm) throws URISyntaxException {
     Connection connection = null;
+    URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
+
+    String username = dbUri.getUserInfo().split(":")[0];
+    String password = dbUri.getUserInfo().split(":")[1];
+    String dbUrl = "mysql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
 
     try {
-      connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/sample", "root", "Yuuki5196");
+      connection = DriverManager.getConnection(dbUrl, username, password);
       delete(productForm);
       PreparedStatement statement = connection.prepareStatement("INSERT INTO product VALUES (?, ?, ?, ?, ?)");
 
@@ -66,11 +78,16 @@ public class SampleService {
     }
   }
 
-  public void update(ProductForm productForm) {
+  public void update(ProductForm productForm) throws URISyntaxException {
     Connection connection = null;
+    URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
+
+    String username = dbUri.getUserInfo().split(":")[0];
+    String password = dbUri.getUserInfo().split(":")[1];
+    String dbUrl = "mysql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
 
     try {
-      connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/sample", "root", "Yuuki5196");
+      connection = DriverManager.getConnection(dbUrl, username, password);
       PreparedStatement statement = connection
           .prepareStatement("UPDATE product SET code=?, name=?, description=?, price=?, evaluation=? WHERE code=?");
 
@@ -92,11 +109,16 @@ public class SampleService {
     }
   }
 
-  public void delete(ProductForm productForm) {
+  public void delete(ProductForm productForm) throws URISyntaxException {
     Connection connection = null;
+    URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
+
+    String username = dbUri.getUserInfo().split(":")[0];
+    String password = dbUri.getUserInfo().split(":")[1];
+    String dbUrl = "mysql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
 
     try {
-      connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/sample", "root", "Yuuki5196");
+      connection = DriverManager.getConnection(dbUrl, username, password);
       PreparedStatement statement = connection.prepareStatement("DELETE FROM product WHERE code=?");
 
       statement.setString(1, productForm.getCode());
