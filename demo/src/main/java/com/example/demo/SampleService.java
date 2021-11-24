@@ -28,7 +28,7 @@ public class SampleService {
     try {
       connection = DriverManager.getConnection(dbUrl, username, password); // localhost:3306を変更
       Statement statement = connection.createStatement();
-      resultSet = statement.executeQuery("select * from product");
+      resultSet = statement.executeQuery("select * from product order by code asc");
       while (resultSet.next()) {
         entities.add(resultSet.getString("code"));
         entities.add(resultSet.getString("name"));
