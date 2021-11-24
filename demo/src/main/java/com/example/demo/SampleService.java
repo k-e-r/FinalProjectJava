@@ -19,7 +19,7 @@ public class SampleService {
     entities = new ArrayList<String>();
     ResultSet resultSet = null;
     Connection connection = null;
-    URI dbUri = new URI(System.getenv("JDBC_DATABASE_URL"));
+    URI dbUri = new URI(System.getenv("DATABASE_URL"));
 
     String username = dbUri.getUserInfo().split(":")[0];
     String password = dbUri.getUserInfo().split(":")[1];
@@ -50,7 +50,7 @@ public class SampleService {
 
   public void insert(ProductForm productForm) throws URISyntaxException {
     Connection connection = null;
-    URI dbUri = new URI(System.getenv("JDBC_DATABASE_URL"));
+    URI dbUri = new URI(System.getenv("DATABASE_URL"));
 
     String username = dbUri.getUserInfo().split(":")[0];
     String password = dbUri.getUserInfo().split(":")[1];
@@ -80,7 +80,7 @@ public class SampleService {
 
   public void update(ProductForm productForm) throws URISyntaxException {
     Connection connection = null;
-    URI dbUri = new URI(System.getenv("JDBC_DATABASE_URL"));
+    URI dbUri = new URI(System.getenv("DATABASE_URL"));
 
     String username = dbUri.getUserInfo().split(":")[0];
     String password = dbUri.getUserInfo().split(":")[1];
@@ -111,7 +111,7 @@ public class SampleService {
 
   public void delete(ProductForm productForm) throws URISyntaxException {
     Connection connection = null;
-    URI dbUri = new URI(System.getenv("JDBC_DATABASE_URL"));
+    URI dbUri = new URI(System.getenv("DATABASE_URL"));
 
     String username = dbUri.getUserInfo().split(":")[0];
     String password = dbUri.getUserInfo().split(":")[1];
