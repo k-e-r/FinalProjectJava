@@ -35,7 +35,7 @@ public class SampleController {
   @RequestMapping(value = "/login_result", method = RequestMethod.POST)
   public String login_result(LoginForm loginForm, Model model) {
     List<Map<String, Object>> list;
-    list = jdbcTemplate.queryForList("select * from user");
+    list = jdbcTemplate.queryForList("select * from \"user\"");
 
     for (int i = 1; i <= list.size(); i++) {
       if (("[" + loginForm.getId() + ", " + loginForm.getName() + "]").equals((list.get(i - 1).values().toString()))) {
