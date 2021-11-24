@@ -19,11 +19,11 @@ public class SampleService {
     entities = new ArrayList<String>();
     ResultSet resultSet = null;
     Connection connection = null;
-    URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
+    URI dbUri = new URI(System.getenv("JDBC_DATABASE_URL"));
 
     String username = dbUri.getUserInfo().split(":")[0];
     String password = dbUri.getUserInfo().split(":")[1];
-    String dbUrl = "jdbc:mysql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+    String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
 
     try {
       connection = DriverManager.getConnection(dbUrl, username, password); // localhost:3306を変更
@@ -50,11 +50,11 @@ public class SampleService {
 
   public void insert(ProductForm productForm) throws URISyntaxException {
     Connection connection = null;
-    URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
+    URI dbUri = new URI(System.getenv("JDBC_DATABASE_URL"));
 
     String username = dbUri.getUserInfo().split(":")[0];
     String password = dbUri.getUserInfo().split(":")[1];
-    String dbUrl = "jdbc:mysql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+    String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
 
     try {
       connection = DriverManager.getConnection(dbUrl, username, password);
@@ -80,11 +80,11 @@ public class SampleService {
 
   public void update(ProductForm productForm) throws URISyntaxException {
     Connection connection = null;
-    URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
+    URI dbUri = new URI(System.getenv("JDBC_DATABASE_URL"));
 
     String username = dbUri.getUserInfo().split(":")[0];
     String password = dbUri.getUserInfo().split(":")[1];
-    String dbUrl = "jdbc:mysql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+    String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
 
     try {
       connection = DriverManager.getConnection(dbUrl, username, password);
@@ -111,11 +111,11 @@ public class SampleService {
 
   public void delete(ProductForm productForm) throws URISyntaxException {
     Connection connection = null;
-    URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
+    URI dbUri = new URI(System.getenv("JDBC_DATABASE_URL"));
 
     String username = dbUri.getUserInfo().split(":")[0];
     String password = dbUri.getUserInfo().split(":")[1];
-    String dbUrl = "jdbc:mysql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+    String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
 
     try {
       connection = DriverManager.getConnection(dbUrl, username, password);
