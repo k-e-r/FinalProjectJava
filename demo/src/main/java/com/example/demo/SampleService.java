@@ -10,20 +10,27 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 
 @Service
+@PropertySource(value = { "classpath:application.properties" })
 public class SampleService {
+  @Autowired
+  Environment environment;
+
   public List<String> selectAll() throws URISyntaxException {
     List<String> entities = null;
     entities = new ArrayList<String>();
     ResultSet resultSet = null;
     Connection connection = null;
-    URI dbUri = new URI(System.getenv("DATABASE_URL"));
 
-    String username = dbUri.getUserInfo().split(":")[0];
-    String password = dbUri.getUserInfo().split(":")[1];
-    String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+    String username = environment.getProperty("spring.datasource.username");
+    String password = environment.getProperty("spring.datasource.password");
+    String dbUrl = environment.getProperty("spring.datasource.url");
 
     try {
       connection = DriverManager.getConnection(dbUrl, username, password); // localhost:3306を変更
@@ -50,11 +57,10 @@ public class SampleService {
 
   public void insert(ProductForm productForm) throws URISyntaxException {
     Connection connection = null;
-    URI dbUri = new URI(System.getenv("DATABASE_URL"));
 
-    String username = dbUri.getUserInfo().split(":")[0];
-    String password = dbUri.getUserInfo().split(":")[1];
-    String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+    String username = environment.getProperty("spring.datasource.username");
+    String password = environment.getProperty("spring.datasource.password");
+    String dbUrl = environment.getProperty("spring.datasource.url");
 
     try {
       connection = DriverManager.getConnection(dbUrl, username, password);
@@ -81,11 +87,10 @@ public class SampleService {
 
   public void update(ProductForm productForm) throws URISyntaxException {
     Connection connection = null;
-    URI dbUri = new URI(System.getenv("DATABASE_URL"));
 
-    String username = dbUri.getUserInfo().split(":")[0];
-    String password = dbUri.getUserInfo().split(":")[1];
-    String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+    String username = environment.getProperty("spring.datasource.username");
+    String password = environment.getProperty("spring.datasource.password");
+    String dbUrl = environment.getProperty("spring.datasource.url");
 
     try {
       connection = DriverManager.getConnection(dbUrl, username, password);
@@ -112,11 +117,10 @@ public class SampleService {
 
   public void delete(ProductForm productForm) throws URISyntaxException {
     Connection connection = null;
-    URI dbUri = new URI(System.getenv("DATABASE_URL"));
 
-    String username = dbUri.getUserInfo().split(":")[0];
-    String password = dbUri.getUserInfo().split(":")[1];
-    String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+    String username = environment.getProperty("spring.datasource.username");
+    String password = environment.getProperty("spring.datasource.password");
+    String dbUrl = environment.getProperty("spring.datasource.url");
 
     try {
       connection = DriverManager.getConnection(dbUrl, username, password);
