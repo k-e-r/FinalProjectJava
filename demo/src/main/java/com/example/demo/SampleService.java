@@ -22,7 +22,7 @@ public class SampleService {
   @Autowired
   Environment environment;
 
-  public List<String> selectAll() throws URISyntaxException {
+  public List<String> selectAll() {
     List<String> entities = null;
     entities = new ArrayList<String>();
     ResultSet resultSet = null;
@@ -55,7 +55,7 @@ public class SampleService {
     return entities;
   }
 
-  public void insert(ProductForm productForm) throws URISyntaxException {
+  public void insert(ProductForm productForm) {
     Connection connection = null;
 
     String username = environment.getProperty("spring.datasource.username");
@@ -85,7 +85,7 @@ public class SampleService {
     }
   }
 
-  public void update(ProductForm productForm) throws URISyntaxException {
+  public void update(ProductForm productForm) {
     Connection connection = null;
 
     String username = environment.getProperty("spring.datasource.username");
@@ -115,7 +115,7 @@ public class SampleService {
     }
   }
 
-  public void delete(ProductForm productForm) throws URISyntaxException {
+  public void delete(ProductForm productForm) {
     Connection connection = null;
 
     String username = environment.getProperty("spring.datasource.username");
